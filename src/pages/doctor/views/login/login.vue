@@ -76,9 +76,11 @@ export default {
         .then(res => {
           debug.log("登录成功", res);
           session.update(res);
+          alert("恭喜你，登录成功！", res);
           this.$router.push({ path: "/" });
         })
         .catch(err => {
+          alert("请校验登录信息后，重新登录！");
           debug.error("登录失败", err);
         });
     }

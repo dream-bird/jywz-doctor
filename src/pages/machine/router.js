@@ -5,7 +5,7 @@ Vue.use(Router);
 
 const router = new Router({
   mode: "history",
-  base: `${process.env.BASE_URL}machine.html/`,
+  base: `${process.env.BASE_URL}machine/`,
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     {

@@ -54,10 +54,12 @@ export default {
       };
       get(config)
         .then(res => {
+          alert("获取医生列表成功！");
           debug.log("获取医生列表成功", res);
           this.doctors = res;
         })
         .catch(err => {
+          alert("获取医生列表失败！");
           debug.error("获取医生列表失败", err);
         });
     }

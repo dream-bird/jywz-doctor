@@ -169,10 +169,12 @@ export default {
     // 获取医生与挂号患者列表
     getDoctorAndPatients() {
       const config = {
-        url: "api/v1/doctor1"
+        //url: "api/v1/doctor1"
+        url: "api/v1/login/info"
       };
       getWithAuth(config)
         .then(res => {
+          //alert("获取医生及挂号患者列表成功！");
           debug.log("获取医生及挂号患者列表成功", res);
           this.doctor = {
             name: res.doctorName,
@@ -184,6 +186,7 @@ export default {
           this.patients = res.registerPatientDtoList;
         })
         .catch(err => {
+          //alert("获取医生及挂号患者列表失败！", err);
           debug.error("获取医生及挂号患者列表失败", err);
         });
     },
