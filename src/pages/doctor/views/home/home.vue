@@ -45,7 +45,15 @@
             >人
           </div>
         </div>
+          <div id="partMainLeft_3">
+              <input id="partMainLeft_3Input" type="text" placeholder="请输入患者名称">
+              <div id="partMainLeft_3Btn" >搜索</div>
+          </div>
+          <div id="partMainLeft_5" >
+              <div id="partMainLeft_5Btn"  >历史就诊人员</div>
+          </div>
         <div class="divider"></div>
+
         <div class="patients">
           <div
             class="patient"
@@ -60,7 +68,9 @@
             </div>
           </div>
         </div>
+
       </div>
+<!--        内容区右侧，诊断结果-->
       <div class="right">
         <div class="top">
           <div class="header">
@@ -70,7 +80,9 @@
               {{ currentPatient.sex }}
               {{ currentPatient.age }}
             </div>
+              <a-button id="PatientHis">历史记录</a-button>
           </div>
+            <!--分割线-->
           <div class="divider"></div>
           <div class="diagnose">
             <div class="diagnose-info">
@@ -119,7 +131,7 @@
 import DoctorNavbar from "../../../../components/navbar/doctor-navbar";
 import RecipeTable from "../../../../components/table/recipe-table-2";
 import CheckTable from "../../../../components/table/check-table";
-import { getWithAuth, postWithAuth } from "../../../../utils/util.http";
+import { getWithAuth, postWithAuth, post, put } from "../../../../utils/util.http";
 import debug from "../../../../utils/util.debug";
 import session from "../../../../utils/util.session";
 
@@ -210,7 +222,8 @@ export default {
       const config = {
         url: `api/v1/card/${this.patientCardQRCode}`
       };
-      getWithAuth(config)
+      // getWithAuth(config)
+      put(config)
         .then(res => {
           debug.log("医生扫描患者就诊卡二维码成功", res);
           const state = res.state;
@@ -225,6 +238,7 @@ export default {
                 _this.patientCardQRCodeState = "lose";
               }
             });
+            this.loading = false;
           } else if (state === "wating") {
             debug.log("医生未扫描患者就诊卡二维码");
             this.patientCardQRCodeState = "wating";
@@ -235,6 +249,7 @@ export default {
             // 轮训，重复获取患者就诊卡二维码状态
             const timer = setTimeout(() => {
               this.onConfirmScanPatientCardQRCode();
+              session.get()
               clearTimeout(timer);
             }, 2000);
           } else if (state === "authed") {
@@ -591,5 +606,52 @@ export default {
   color: #ffffff;
   font-size: 14px;
   font-weight: 400;
+}
+
+#partMainLeft_3{
+
+}
+#partMainLeft_3Input{
+    width:220px;
+    height:28px;
+    background:rgba(255,255,255,1);
+    border-radius:3px;
+    border:1px solid rgba(217,217,217,1);
+    margin-top: 18px;
+    margin-left: 28px;
+}
+#partMainLeft_3Btn{
+    width:60px;
+    height:28px;
+    background-color:rgba(24,144,255,1);
+    border-radius:0px 3px 3px 0px;
+    color: white;
+    line-height: 28px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: -28px;
+    margin-left: 248px;
+}
+#partMainLeft_5Btn{
+    /*历史记录查询*/
+    width:275px;
+    height:31px;
+    background:rgba(0,144,255,1);
+    border-radius:3px;
+    text-align: center;
+    color: white;
+    position: relative;
+    top: 535px;
+    /*bottom: 10px;*/
+    left:28px;
+    font-size: 14px;
+    line-height:31px;
+}
+#PatientHis{
+    display: flex;
+    margin-left: 600px;
+    background:rgba(24,144,255,1);
+    border-radius:3px;
+    color: white;
 }
 </style>

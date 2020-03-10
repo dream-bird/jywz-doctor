@@ -9,6 +9,16 @@ export default {
     name: "周杰伦",
     password: "o1234567"
   },
+  // doctor: {
+  //   certificate: "110101199003079166",
+  //   department: "内科",
+  //   grade: "主治医师",
+  //   idcard: "110101199003079166",
+  //   location: "北京大学附属医院",
+  //   mobile: "17531903998",
+  //   name: "乔布斯",
+  //   password: "123456"
+  // },
   patient: {
     // idcard: "11010119900307804X",
     // mobile: "11122223333",

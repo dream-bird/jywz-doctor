@@ -33,7 +33,7 @@
             <button @click="onLogin">登 录</button>
           </div>
           <div class="form-item text-right">
-            <span>还没有账号，去 </span><a @click="onGoToRegister">注册</a>
+            <span>没有账号 </span><a @click="onGoToRegister">请注册</a>
           </div>
         </div>
       </div>
@@ -53,8 +53,8 @@ export default {
   components: {},
   data() {
     return {
-      username: test.doctor.idcard ? test.doctor.idcard : "",
-      password: test.doctor.password ? test.doctor.password : ""
+      username: test.patient.idcard ? test.patient.idcard : "",
+      password: test.patient.password ? test.patient.password : ""
     };
   },
   methods: {
@@ -76,37 +76,30 @@ export default {
         .then(res => {
           debug.log("登录成功", res);
           session.update(res);
-          alert("恭喜你，登录成功！", res);
           this.$router.push({ path: "/" });
         })
         .catch(err => {
-          alert("请校验登录信息后，重新登录！");
           debug.error("登录失败", err);
         });
     }
   }
 };
 </script>
-<!--测试提交git-->
+
 <style lang="less" scoped>
-/*scoped属性是一个布尔属性，如果使用该属性，则样式仅仅应用到style元素的父元素及其子元素中*/
 .page-container {
-  width: 100%;
-  height: 100%;
-  justify-content: center; /*在弹性盒对象的div元素中的各项周围留有空白，center使项目容器的中心*/
+  min-height: 100%;
+  justify-content: center;
   background-image: url("../../../../assets/images/doctor_login_bg.png");
-  background-repeat: no-repeat; /*页面在缩小或者放大的时候不会重复出现*/
-  background-size: cover; /*cover 此时会保持图像的横纵比并将图像缩放成完全覆盖背景定位区域的最小大小*/
-  background-position: center; /*居中*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .main {
-  /*主要框体，中间内容区*/
-  /*width: 850px;*/
-  width: 60%;
-  /*height: 500px;*/
-  display: flex; /*弹性布局*/
-  flex-direction: row; /*灵活的项目将水平显示，正如一个行*/
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
   margin: 80px auto;
   background: #ffffff;
   box-shadow: 0 3px 18px 0 rgba(21, 24, 113, 1);
@@ -127,13 +120,14 @@ export default {
       max-width: 80%;
     }
   }
+
   .main-right {
     width: 60%;
 
     .form {
       width: 100%;
       height: 100%;
-      padding: 10% 10%;
+      padding: 81px 77px;
 
       .title {
         color: #333333;
@@ -142,7 +136,7 @@ export default {
       }
 
       .form-item {
-        margin-top: 10%;
+        margin-top: 75px;
 
         label {
           color: #333333;
@@ -152,10 +146,10 @@ export default {
         }
 
         input {
-          outline: none; /*是绘制元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用*/
+          outline: none;
           border: none;
-          border-bottom: 1px solid #d8d8d8; /*边框属性，绘制边框下面*/
-          padding: 7px 10px; /*设置内边距，高，左*/
+          border-bottom: 1px solid #d8d8d8;
+          padding: 7px 0;
           color: #999999;
           font-size: 14px;
           font-weight: 400;
@@ -186,11 +180,11 @@ export default {
     }
   }
 }
-/*网页布局随窗口大小自适应*/
+
 @media (max-width: 992px) {
   .main {
     .main-left {
-      display: none; /*规定元素应该生成的框的类型，none此元素不会被显示*/
+      display: none;
     }
 
     .main-right {

@@ -39,42 +39,6 @@
             v-model="mobile"
           />
         </div>
-        <div class="form-item flex-col">
-          <label for="certificate">医生资格证号码</label>
-          <input
-            id="certificate"
-            type="text"
-            placeholder="请输入医生资格证号码"
-            v-model="certificate"
-          />
-        </div>
-        <div class="form-item flex-col">
-          <label for="location">就诊地点</label>
-          <input
-            id="location"
-            type="text"
-            placeholder="请输入就诊地点"
-            v-model="location"
-          />
-        </div>
-        <div class="form-item flex-col">
-          <label for="department">所在科室</label>
-          <input
-            id="department"
-            type="text"
-            placeholder="请输入所在科室"
-            v-model="department"
-          />
-        </div>
-        <div class="form-item flex-col">
-          <label for="grade">职称</label>
-          <input
-            id="grade"
-            type="text"
-            placeholder="请输入职称"
-            v-model="grade"
-          />
-        </div>
         <div class="form-item" v-show="registerErrorMessage">
           <a-alert :message="registerErrorMessage" banner />
         </div>
@@ -100,14 +64,14 @@ export default {
   components: {},
   data() {
     return {
-      certificate: test.doctor.certificate ? test.doctor.certificate : "",
-      department: test.doctor.department ? test.doctor.department : "",
-      grade: test.doctor.grade ? test.doctor.grade : "",
-      idcard: test.doctor.idcard ? test.doctor.idcard : "",
-      location: test.doctor.location ? test.doctor.location : "",
-      mobile: test.doctor.mobile ? test.doctor.mobile : "",
-      name: test.doctor.name ? test.doctor.name : "",
-      password: test.doctor.password ? test.doctor.password : "",
+      certificate: "",
+      department: "",
+      grade: "",
+      idcard: test.patient.idcard ? test.patient.idcard : "",
+      location: "",
+      mobile: test.patient.mobile ? test.patient.mobile : "",
+      name: test.patient.name ? test.patient.name : "",
+      password: test.patient.password ? test.patient.password : "",
       registerErrorMessage: ""
     };
   },
@@ -119,7 +83,7 @@ export default {
       // 测试数据
       this.registerErrorMessage = "";
       const config = {
-        url: `api/v1/register/user`,
+        url: `api/v1/user`,
         data: {
           certificate: this.certificate,
           department: this.department,
@@ -129,7 +93,7 @@ export default {
           mobile: this.mobile,
           name: this.name,
           password: md5(this.password.trim()).toUpperCase(),
-          roles: "2"
+          roles: "1"
         }
       };
       put(config)
