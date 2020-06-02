@@ -26,7 +26,10 @@ const router = new Router({
         title: "欢迎登录 | 医生 | 就诊问诊"
       },
       component: () =>
-        import(/* webpackChunkName: "doctor-login" */ "./views/login/login.vue")
+        // import(/* webpackChunkName: "doctor-login" */ "./views/login/login.vue")
+        import(
+          /* webpackChunkName: "doctor-login" */ "./views/login/login_mock.vue"
+        )
     },
     {
       path: "/register",
