@@ -3,7 +3,7 @@ import Router from "vue-router";
 import session from "../../utils/util.session";
 
 Vue.use(Router);
-//路由
+//路由啊
 const router = new Router({
   mode: "history",
   base: `${process.env.BASE_URL}doctor/`,
